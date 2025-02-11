@@ -199,26 +199,22 @@ var phones = [
   },
 ];
 
-var cartItem = JSON.parse(localStorage.getItem("cartItems"));
-
-var cartItems = function saveCartToLocalStorage() {
-  localStorage.setItem("cartItems", JSON.stringify(cartItems));
-};
+var cartItem = JSON.parse(localStorage.getItem("cartItems")) || [];
 
 var div = document.querySelector("#container");
 
 for (var i = 0; i < phones.length; i++) {
   div.innerHTML += `
     <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">${phones[i].brand}</h5>
-                <img src="${phones[i].image}" alt="${phones[i].brand} ${phones[i].model}" />
-                <h6 class="card-subtitle">${phones[i].model}</h6>
-                <h3>$ ${phones[i].price}</h6>
-                <button onclick="addToCart(${i})" class="card-btn">Add to cart</button>
-            </div>
-        </div>
-    `;
+      <div class="card-body">
+        <h5 class="card-title">${phones[i].brand}</h5>
+        <img src="${phones[i].image}" alt="${phones[i].brand} ${phones[i].model}" />
+        <h6 class="card-subtitle">${phones[i].model}</h6>
+        <h3>$ ${phones[i].price}</h3>
+        <button onclick="addToCart(${i})" class="card-btn">Add to cart</button>
+      </div>
+    </div>
+  `;
 }
 
 function addToCart(index) {
@@ -248,15 +244,9 @@ function gotocart() {
 }
 
 document.getElementById("scrollDownBtn").addEventListener("click", function () {
-  window.scrollTo({
-    top: document.body.scrollHeight,
-    behavior: "smooth",
-  });
+  window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
 });
 
 document.getElementById("scrollUpBtn").addEventListener("click", function () {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth",
-  });
+  window.scrollTo({ top: 0, behavior: "smooth" });
 });
